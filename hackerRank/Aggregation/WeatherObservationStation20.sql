@@ -1,0 +1,5 @@
+SET @rn = -1;
+SELECT ROUND(AVG(LAT_N), 4) FROM (
+    SELECT @rn := @rn + 1 AS RN, LAT_N FROM STATION ORDER BY LAT_N
+    ) SUB
+WHERE RN IN (FLOOR(@rn / 2), CEIL(@rn / 2));
